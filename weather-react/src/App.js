@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from 'react';
 
 const api = {
-  key: '30465498292fc0a2adfdc6707d194c9f',
+  key: process.env.REACT_APP_WEATHER_KEY,
   base: 'http://api.openweathermap.org/data/2.5/'
 }
 
 const unsplash_api = {
   access_key: 'Client-ID 9FcH8o8yYGO8Yh3KYFyjDaBvbwGnDdLBOasLgzHZOi8',
-  secret_key: 'zbWKB5rOuv6ZehhnPt-gvyxhObEk6rayddz41cW0aPc',
   base: 'https://api.unsplash.com/search/photos'
 }
 
@@ -15,7 +14,7 @@ function App() {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
   const [bg, setBg] = useState('./assets/cold.jpg');
-
+  console.log(process.env.REACT_APP_WEATHER_KEY)
   useEffect(() => {
     // get default weather information
     fetch(`${api.base}weather?q=san+francisco&units=metric&APPID=${api.key}`)
@@ -25,17 +24,17 @@ function App() {
       console.log(result)
     })
     // get default background
-  fetch(`${unsplash_api.base}?page=1&query=san+francisco`, {
-    headers:{
-      Authorization: unsplash_api.access_key
-    }
-  })
-    .then(res => res.json())
-    .then(res => {
-      console.log('unsplash api response', res.results[0].urls.regular, res)
-      setBg(res.results[0].urls.regular)
-      setQuery('')
-    })
+  // fetch(`${unsplash_api.base}?page=1&query=san+francisco`, {
+  //   headers:{
+  //     Authorization: unsplash_api.access_key
+  //   }
+  // })
+  //   .then(res => res.json())
+  //   .then(res => {
+  //     console.log('unsplash api response', res.results[0].urls.regular, res)
+  //     setBg(res.results[0].urls.regular)
+  //     setQuery('')
+  //   })
   }, [])
 
   const search = evt => {
@@ -48,17 +47,17 @@ function App() {
           console.log(result)
         })
         // get background
-      fetch(`${unsplash_api.base}?page=1&query=${query}`, {
-        headers:{
-          Authorization: unsplash_api.access_key
-        }
-      })
-        .then(res => res.json())
-        .then(res => {
-          console.log('unsplash api response', res.results[0].urls.regular, res)
-          setBg(res.results[0].urls.regular)
-          setQuery('')
-        })
+      // fetch(`${unsplash_api.base}?page=1&query=${query}`, {
+      //   headers:{
+      //     Authorization: unsplash_api.access_key
+      //   }
+      // })
+      //   .then(res => res.json())
+      //   .then(res => {
+      //     console.log('unsplash api response', res.results[0].urls.regular, res)
+      //     setBg(res.results[0].urls.regular)
+      //     setQuery('')
+      //   })
     }
   }
 
