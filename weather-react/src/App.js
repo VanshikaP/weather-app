@@ -6,7 +6,7 @@ const api = {
 }
 
 const unsplash_api = {
-  access_key: 'Client-ID 9FcH8o8yYGO8Yh3KYFyjDaBvbwGnDdLBOasLgzHZOi8',
+  access_key: `Client-ID ${process.env.REACT_APP_UNSPLASH_KEY}`,
   base: 'https://api.unsplash.com/search/photos'
 }
 
@@ -14,7 +14,6 @@ function App() {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
   const [bg, setBg] = useState('./assets/cold.jpg');
-  console.log(process.env.REACT_APP_WEATHER_KEY)
   useEffect(() => {
     // get default weather information
     fetch(`${api.base}weather?q=san+francisco&units=metric&APPID=${api.key}`)
