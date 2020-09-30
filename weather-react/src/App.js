@@ -103,7 +103,7 @@ function App() {
         <div>
           <div className='location-box'>
             <div className='location'>{weather.name}, {weather.sys.country}</div>
-            <div className='date'>{dateBuilder(new Date())}</div>
+            <div className='date'>{dateBuilder(new Date((weather.dt + weather.timezone + 25200) * 1000))}</div>
           </div>
           <div className='weather-box'>
             <div className='temp'>

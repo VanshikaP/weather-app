@@ -1,8 +1,8 @@
 import React from 'react'
 
 const MoreInfo = ({weatherInfo, units}) => {
-    // const sunriseTime = new Date((weatherInfo.sys.sunrise+weatherInfo.timezone+25200) * 1000).toLocaleTimeString()
-    // console.log(weatherInfo.sys.sunrise, weatherInfo.timezone, sunriseTime)
+    // const dateToday = new Date((weatherInfo.sys.sunset + weatherInfo.timezone + 25200) * 1000).toDateString()
+    // console.log(dateToday)
     return (
         <div className='weather-info'>
             <table className='weather-table'>
