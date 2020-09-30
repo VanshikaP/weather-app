@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import MoreInfo from './MoreInfo'
 
 const api = {
   key: process.env.REACT_APP_WEATHER_KEY,
@@ -94,7 +95,7 @@ function App() {
             className='search-bar'
             placeholder='Search...'
             onChange = {e => setQuery(e.target.value)}
-            value={query}
+            value={query === 'san+francisco' ? '' : query}
             onKeyPress={search}
           />
         </div>
@@ -107,7 +108,7 @@ function App() {
           <div className='weather-box'>
             <div className='temp'>
               {Math.round(weather.main.temp)}
-              <span onClick={() => {units === 'metric' ? setUnits('imperial') : setUnits('metric')}}>
+              <span className='temp-unit' onClick={() => {units === 'metric' ? setUnits('imperial') : setUnits('metric')}}>
                 °
                 {units === 'metric' ? ('C') : ('F')}
               </span>
@@ -118,10 +119,11 @@ function App() {
             <div className='weather'>
               <div className='desc'>
                 {weather.weather[0].main}
-                <img className='weather-icon' src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} />
+                <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
               </div>
             </div>
           </div>
+          <MoreInfo weatherInfo={weather} units={units} />
         </div>
         ) : ('')}
       </main>

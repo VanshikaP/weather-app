@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -14,9 +14,6 @@ body{
   background-size: cover;
   background-position: bottom;
   transition: 0.4s ease-out;
-}
-.app.warm{
-  background-image: url('./assets/warm.jpg');
 }
 
 main{
@@ -87,11 +84,15 @@ main{
 
   color: #ffffff;
   font-size: 100px;
-  font-weight: 900;
+  font-weight: 800;
 
   text-shadow: 3px 6px rgba(50,50,70,0.75);
   text-align: center;
   box-shadow: 3px 6px rgba(0,0,0,0.2);
+}
+.temp-unit:hover{
+  /* color: rgba(255, 255, 255, 0.705); */
+  text-shadow: 3px 6px rgba(2, 2, 251, 0.75);
 }
 .temp-range{
   font-size: 20px;
@@ -114,4 +115,19 @@ main{
   width: 40%;
   margin: -20px auto;
   align-content: center;
+}
+
+.weather-table{
+  width: 100%;
+  color: #ffffff;
+  background-color: rgba(255,255,255,0.2);
+  padding: 15px;
+  border-radius: 5px;
+}
+td{
+  height: 50px;
+}
+.weather-field{
+  font-size: 16px;
+  font-weight: 400;
 }
