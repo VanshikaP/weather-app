@@ -93,10 +93,25 @@ main{
   text-align: center;
   box-shadow: 3px 6px rgba(0,0,0,0.2);
 }
-
+.temp-range{
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: none;
+}
 .weather{
   color: #ffffff;
   font-size: 48px;
   font-weight: 700;
   text-shadow: 3px 3px rgba(50,50,70,0.75);
+}
+.desc{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.weather-icon{
+  /* display: inline-block; */
+  width: 40%;
+  margin: -20px auto;
+  align-content: center;
 }

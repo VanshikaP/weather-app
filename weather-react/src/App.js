@@ -11,16 +11,25 @@ const unsplash_api = {
 }
 
 function App() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('san+francisco');
+  const [units, setUnits] = useState('metric');
   const [weather, setWeather] = useState({});
-  const [bg, setBg] = useState('./assets/cold.jpg');
+  const [bg, setBg] = useState('');
+  const [hourly, setHourly] = useState([]);
+
   useEffect(() => {
-    // get default weather information
-    fetch(`${api.base}weather?q=san+francisco&units=metric&APPID=${api.key}`)
+    // get default current weather information
+    fetch(`${api.base}weather?q=${query}&units=${units}&APPID=${api.key}`)
     .then(res => res.json())
     .then(result => {
       setWeather(result)
       console.log(result)
+      // get hourly forecast
+      fetch(`${api.base}onecall?lat=${result.coord.lat}&lon=${result.coord.lon}&units=${units}&APPID=${api.key}`)
+        .then(res => res.json())
+        .then(result => {
+          console.log('Hourly', result)
+        })
     })
     // get default background
   // fetch(`${unsplash_api.base}?page=1&query=san+francisco`, {
@@ -34,12 +43,12 @@ function App() {
   //     setBg(res.results[0].urls.regular)
   //     setQuery('')
   //   })
-  }, [])
+  }, [units])
 
   const search = evt => {
     if (evt.key === 'Enter'){
       // get weather information
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(`${api.base}weather?q=${query}&units=${units}&APPID=${api.key}`)
         .then(res => res.json())
         .then(result => {
           setWeather(result)
@@ -53,8 +62,12 @@ function App() {
       // })
       //   .then(res => res.json())
       //   .then(res => {
-      //     console.log('unsplash api response', res.results[0].urls.regular, res)
-      //     setBg(res.results[0].urls.regular)
+      //     console.log('unsplash api response', res)
+      //     if (res.results.length != 0){
+      //       setBg(res.results[0].urls.regular)
+      //     } else {
+      //       setBg('https://c0.wallpaperflare.com/preview/181/2/553/sky-sunset-sunrise-blank.jpg')
+      //     }
       //     setQuery('')
       //   })
     }
@@ -93,10 +106,20 @@ function App() {
           </div>
           <div className='weather-box'>
             <div className='temp'>
-              {Math.round(weather.main.temp)}°C
+              {Math.round(weather.main.temp)}
+              <span onClick={() => {units === 'metric' ? setUnits('imperial') : setUnits('metric')}}>
+                °
+                {units === 'metric' ? ('C') : ('F')}
+              </span>
+              <div className='temp-range'>
+              {Math.round(weather.main.temp_max)}°/{Math.round(weather.main.temp_min)}°
+              </div>
             </div>
             <div className='weather'>
-              {weather.weather[0].main}
+              <div className='desc'>
+                {weather.weather[0].main}
+                <img className='weather-icon' src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} />
+              </div>
             </div>
           </div>
         </div>
