@@ -18,7 +18,7 @@ function App() {
   const [location, setLocation] = useState({lat: 37.77, lon: -122.42})
   const [weather, setWeather] = useState({});
   const [bg, setBg] = useState('');
-  const [hourly, setHourly] = useState([]);
+  // const [hourly, setHourly] = useState([]);
   
   // get user location if allowed
   useEffect(() => {
@@ -40,24 +40,24 @@ function App() {
       setWeather(result)
       console.log(result)
       // get hourly forecast
-      fetch(`${api.base}onecall?lat=${location.lat}&lon=${location.lon}&units=${units}&APPID=${api.key}`)
-        .then(res => res.json())
-        .then(result => {
-          console.log('Hourly', result)
-        })
+      // fetch(`${api.base}onecall?lat=${location.lat}&lon=${location.lon}&units=${units}&APPID=${api.key}`)
+      //   .then(res => res.json())
+      //   .then(result => {
+      //     console.log('Hourly', result)
+      //   })
     })
     // get default background
-  // fetch(`${unsplash_api.base}?page=1&query=san+francisco`, {
-  //   headers:{
-  //     Authorization: unsplash_api.access_key
-  //   }
-  // })
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     console.log('unsplash api response', res.results[0].urls.regular, res)
-  //     setBg(res.results[0].urls.regular)
-  //     setQuery('')
-  //   })
+  fetch(`${unsplash_api.base}?page=1&query=san+francisco`, {
+    headers:{
+      Authorization: unsplash_api.access_key
+    }
+  })
+    .then(res => res.json())
+    .then(res => {
+      console.log('unsplash api response', res.results[0].urls.regular, res)
+      setBg(res.results[0].urls.regular)
+      setQuery('')
+    })
   }, [units, location])
 
   const search = evt => {
@@ -70,21 +70,21 @@ function App() {
           console.log(result)
         })
         // get background
-      // fetch(`${unsplash_api.base}?page=1&query=${query}`, {
-      //   headers:{
-      //     Authorization: unsplash_api.access_key
-      //   }
-      // })
-      //   .then(res => res.json())
-      //   .then(res => {
-      //     console.log('unsplash api response', res)
-      //     if (res.results.length != 0){
-      //       setBg(res.results[0].urls.regular)
-      //     } else {
-      //       setBg('https://c0.wallpaperflare.com/preview/181/2/553/sky-sunset-sunrise-blank.jpg')
-      //     }
-      //     setQuery('')
-      //   })
+      fetch(`${unsplash_api.base}?page=1&query=${query}`, {
+        headers:{
+          Authorization: unsplash_api.access_key
+        }
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log('unsplash api response', res)
+          if (res.results.length != 0){
+            setBg(res.results[0].urls.regular)
+          } else {
+            setBg('https://c0.wallpaperflare.com/preview/181/2/553/sky-sunset-sunrise-blank.jpg')
+          }
+          setQuery('')
+        })
     }
   }
 

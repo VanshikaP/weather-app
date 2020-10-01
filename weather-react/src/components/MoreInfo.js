@@ -10,7 +10,7 @@ const MoreInfo = ({weatherInfo, units}) => {
                     <tr>
                         <td>
                             <span className='weather-field'>Feels like</span><br/>
-                            <span className='weather-value'>{weatherInfo.main.feels_like}</span>
+                            <span className='weather-value'>{weatherInfo.main.feels_like} </span>
                             <span className='weather-unit'>
                             °
                             {units === 'metric' ? ('C') : ('F')}
@@ -18,7 +18,7 @@ const MoreInfo = ({weatherInfo, units}) => {
                         </td>
                         <td>
                             <span className='weather-field'>Humidity</span><br/>
-                            <span className='weather-value'>{weatherInfo.main.humidity}</span>
+                            <span className='weather-value'>{weatherInfo.main.humidity} </span>
                             <span className='weather-unit'>
                             %
                             </span>
@@ -31,7 +31,7 @@ const MoreInfo = ({weatherInfo, units}) => {
                         </td>
                         <td>
                             <span className='weather-field'>Pressure</span><br/>
-                            <span className='weather-value'>{weatherInfo.main.pressure}</span>
+                            <span className='weather-value'>{weatherInfo.main.pressure} </span>
                             <span className='weather-unit'>
                             hPa
                             </span>
@@ -44,7 +44,7 @@ const MoreInfo = ({weatherInfo, units}) => {
                         </td>
                         <td>
                             <span className='weather-field'>Wind</span><br/>
-                            <span className='weather-value'>{weatherInfo.wind.speed}</span>
+                            <span className='weather-value'>{weatherInfo.wind.speed} </span>
                             <span className='weather-unit'>
                             {units === 'metric' ? ('m/s') : ('mph')}
                             </span>
@@ -53,7 +53,7 @@ const MoreInfo = ({weatherInfo, units}) => {
                     <tr>
                         <td>
                             <span className='weather-field'>Visibility</span><br/>
-                            <span className='weather-value'>{Math.round(weatherInfo.visibility / 100)/10}</span>
+                            <span className='weather-value'>{Math.round(weatherInfo.visibility / 100)/10} </span>
                             <span className='weather-unit'>
                             km
                             </span>
