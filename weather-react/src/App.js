@@ -101,7 +101,7 @@ function App() {
     return `${day}\n${date} ${month} ${year}`
   }
   return (
-    <div className='app' style={{ backgroundImage: `url(${bg})`}}>
+    <div className='app' style={{ backgroundImage: `url(${bg})`}} >
       <main>
         <SearchBox query={query} setQuery={setQuery} search={search} />
         {(typeof weather.main != "undefined") ? (
