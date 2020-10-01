@@ -14,13 +14,26 @@ const unsplash_api = {
 function App() {
   const [query, setQuery] = useState('san+francisco');
   const [units, setUnits] = useState('metric');
+  const [location, setLocation] = useState({lat: 37.77, lon: -122.42})
   const [weather, setWeather] = useState({});
   const [bg, setBg] = useState('');
   const [hourly, setHourly] = useState([]);
-
+  
+  // get user location if allowed
+  useEffect(() => {
+    if('geolocation' in navigator){
+      console.log('Location is available')
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+        setLocation({lat: position.coords.latitude, lon: position.coords.longitude})
+      });
+    }
+  },[])
+  
   useEffect(() => {
     // get default current weather information
-    fetch(`${api.base}weather?q=${query}&units=${units}&APPID=${api.key}`)
+    fetch(`${api.base}weather?lat=${location.lat}&lon=${location.lon}&units=${units}&APPID=${api.key}`)
     .then(res => res.json())
     .then(result => {
       setWeather(result)
@@ -44,7 +57,7 @@ function App() {
   //     setBg(res.results[0].urls.regular)
   //     setQuery('')
   //   })
-  }, [units])
+  }, [units, location])
 
   const search = evt => {
     if (evt.key === 'Enter'){
