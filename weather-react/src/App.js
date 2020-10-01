@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import MoreInfo from './MoreInfo'
+import MoreInfo from './components/MoreInfo'
+import SearchBox from './components/SearchBox';
 
 const api = {
   key: process.env.REACT_APP_WEATHER_KEY,
@@ -39,7 +40,7 @@ function App() {
       setWeather(result)
       console.log(result)
       // get hourly forecast
-      fetch(`${api.base}onecall?lat=${result.coord.lat}&lon=${result.coord.lon}&units=${units}&APPID=${api.key}`)
+      fetch(`${api.base}onecall?lat=${location.lat}&lon=${location.lon}&units=${units}&APPID=${api.key}`)
         .then(res => res.json())
         .then(result => {
           console.log('Hourly', result)
@@ -102,16 +103,7 @@ function App() {
   return (
     <div className='app' style={{ backgroundImage: `url(${bg})`}}>
       <main>
-        <div className='search-box'>
-          <input 
-            type='text'
-            className='search-bar'
-            placeholder='Search...'
-            onChange = {e => setQuery(e.target.value)}
-            value={query === 'san+francisco' ? '' : query}
-            onKeyPress={search}
-          />
-        </div>
+        <SearchBox query={query} setQuery={setQuery} search={search} />
         {(typeof weather.main != "undefined") ? (
         <div>
           <div className='location-box'>
