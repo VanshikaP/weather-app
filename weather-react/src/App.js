@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import MoreInfo from './components/MoreInfo'
 import SearchBox from './components/SearchBox';
+import HourlyForecast from './components/HourlyForecast';
+import WeeklyForecast from './components/WeeklyForecast';
 
 const api = {
   key: process.env.REACT_APP_WEATHER_KEY,
@@ -17,8 +19,10 @@ function App() {
   const [units, setUnits] = useState('metric');
   const [location, setLocation] = useState({lat: 37.77, lon: -122.42})
   const [weather, setWeather] = useState({});
+  const [uvi, setUvi] = useState('');
   const [bg, setBg] = useState('');
-  // const [hourly, setHourly] = useState([]);
+  const [hourly, setHourly] = useState([]);
+  const [weekly, setWeekly] = useState([]);
   
   // get user location if allowed
   useEffect(() => {
@@ -40,11 +44,14 @@ function App() {
       setWeather(result)
       console.log(result)
       // get hourly forecast
-      // fetch(`${api.base}onecall?lat=${location.lat}&lon=${location.lon}&units=${units}&APPID=${api.key}`)
-      //   .then(res => res.json())
-      //   .then(result => {
-      //     console.log('Hourly', result)
-      //   })
+      fetch(`${api.base}onecall?lat=${location.lat}&lon=${location.lon}&units=${units}&APPID=${api.key}`)
+        .then(res => res.json())
+        .then(result => {
+          console.log('Hourly', result)
+          setUvi(result.current.uvi)
+          setHourly(result.hourly)
+          setWeekly(result.daily)
+        })
     })
     // get default background
   fetch(`${unsplash_api.base}?page=1&query=san+francisco`, {
@@ -128,7 +135,9 @@ function App() {
               </div>
             </div>
           </div>
-          <MoreInfo weatherInfo={weather} units={units} />
+          <HourlyForecast hourly={hourly} timezone={weather.timezone} units={units} currentDt={weather.dt} />
+          <WeeklyForecast weekly={weekly} timezone={weather.timezone} />
+          <MoreInfo weatherInfo={weather} units={units} uvi={uvi}/>
         </div>
         ) : ('')}
       </main>

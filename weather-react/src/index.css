@@ -134,3 +134,32 @@ td{
   font-size: 16px;
   font-weight: 400;
 }
+.hourly-container{
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 5px;
+  width: auto;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  margin: 20px auto;
+  padding: 5px 0;
+}
+.hourly-box{
+  text-align: center;
+  max-width: 60px;
+  height: 100%;
+  display: inline-block;
+  flex-direction: column;
+  color: #ffffff;
+  font-size: 12px;
+}
+.hourly-icon-img{
+  width: 100%;
+}
+.weekly-box{
+  margin: 20px auto;
+  padding: 5px 0;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 5px;
+  color: #ffffff;
+}

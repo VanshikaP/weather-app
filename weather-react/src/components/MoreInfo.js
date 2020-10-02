@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MoreInfo = ({weatherInfo, units}) => {
+const MoreInfo = ({weatherInfo, units, uvi}) => {
     // const dateToday = new Date((weatherInfo.sys.sunset + weatherInfo.timezone + 25200) * 1000).toDateString()
     // console.log(dateToday)
     return (
@@ -57,6 +57,10 @@ const MoreInfo = ({weatherInfo, units}) => {
                             <span className='weather-unit'>
                             km
                             </span>
+                        </td>
+                        <td>
+                            <span className='weather-field'>UV Index</span><br/>
+                            <span className='weather-value'>{Math.round(uvi)} </span>
                         </td>
                     </tr>
                 </tbody>
