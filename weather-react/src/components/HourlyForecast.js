@@ -21,10 +21,10 @@ const HourlyForecast = ({hourly, currentDt, timezone, units}) => {
                     {convertTime(h.dt)}
                     </div>
                     <div className='hourly-icon'>
-                    <img className='hourly-icon-img' src={`http://openweathermap.org/img/wn/${h.weather[0].icon}@2x.png`} />
+                    <img className='hourly-icon-img' src={`http://openweathermap.org/img/wn/${h.weather[0].icon}.png`} alt={h.weather[0].main}/>
                     </div>
                     <div className='hourly-temp'>
-                        {h.temp} °
+                        {Math.round(h.temp)} °
                         {units === 'metric' ? ('C') : ('F')}
                     </div>
                 </div>

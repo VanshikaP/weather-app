@@ -71,9 +71,7 @@ main{
   text-align: center;
   text-shadow: 2px 2px rgba(50,50,50,0.75);
 }
-.weather{
-  margin: 20px auto;
-}
+
 .weather-box{
   text-align: center;
 }
@@ -109,16 +107,21 @@ main{
   font-size: 48px;
   font-weight: 700;
   text-shadow: 3px 3px rgba(50,50,70,0.75);
+  margin: 20px auto;
 }
 .desc{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.weather-desc{
+  margin: auto 0;
 }
 .weather-icon{
-  /* display: inline-block; */
-  width: 40%;
-  margin: -20px auto;
+  display: inline-block;
+  width: 4.5rem;
+  background: rgb(35, 154, 233);
+  border-radius: 50%;
   align-content: center;
 }
 
@@ -154,6 +157,9 @@ td{
   flex-direction: column;
   color: #ffffff;
   font-size: 12px;
+}
+.hourly-icon{
+  height: 60%;
 }
 .hourly-icon-img{
   width: 100%;

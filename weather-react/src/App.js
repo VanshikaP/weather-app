@@ -130,8 +130,8 @@ function App() {
             </div>
             <div className='weather'>
               <div className='desc'>
-                {weather.weather[0].main}
-                <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
+                <span className='weather-desc'>{weather.weather[0].main}</span>
+                <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt='' />
               </div>
             </div>
           </div>
