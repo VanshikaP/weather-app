@@ -71,7 +71,9 @@ main{
   text-align: center;
   text-shadow: 2px 2px rgba(50,50,50,0.75);
 }
-
+.weather{
+  margin: 20px auto;
+}
 .weather-box{
   text-align: center;
 }
