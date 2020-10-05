@@ -44,12 +44,12 @@ function App() {
     .then(res => res.json())
     .then(result => {
       setWeather(result)
-      console.log(result)
+      // console.log(result)
       // get hourly forecast
       fetch(`${api.base}onecall?lat=${location.lat}&lon=${location.lon}&units=${units}&APPID=${api.key}`)
         .then(res => res.json())
         .then(result => {
-          console.log('Hourly', result)
+          // console.log('Hourly', result)
           setUvi(result.current.uvi)
           setHourly(result.hourly)
           setWeekly(result.daily)
@@ -63,7 +63,7 @@ function App() {
   })
     .then(res => res.json())
     .then(res => {
-      console.log('unsplash api response', res.results[0].urls.regular, res)
+      // console.log('unsplash api response', res.results[0].urls.regular, res)
       setBg(res.results[0].urls.regular)
       setQuery('')
     })
@@ -76,6 +76,7 @@ function App() {
         .then(res => res.json())
         .then(result => {
           setWeather(result)
+          setLocation(result.coord)
           console.log(result)
         })
         // get background
@@ -86,7 +87,7 @@ function App() {
       })
         .then(res => res.json())
         .then(res => {
-          console.log('unsplash api response', res)
+          // console.log('unsplash api response', res)
           if (res.results.length != 0){
             setBg(res.results[0].urls.regular)
           } else {
