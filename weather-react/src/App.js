@@ -141,7 +141,7 @@ function App() {
           {/* <WeeklyForecast weekly={weekly} timezone={weather.timezone} localTimezoneOffset={localTimezoneOffset}/> */}
           <MoreInfo weatherInfo={weather} units={units} uvi={uvi}/>
           <div className='weather-info'>
-            {weather.weather[0]}
+            {weather.weather[0].icon}
           </div>
         </div>
         ) : ('')}
