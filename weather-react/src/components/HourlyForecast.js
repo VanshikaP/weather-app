@@ -1,8 +1,8 @@
 import React from 'react';
 
-const HourlyForecast = ({hourly, currentDt, timezone, units}) => {
+const HourlyForecast = ({hourly, currentDt, timezone, units, localTimezoneOffset}) => {
     const convertTime = d => {
-        let hours = new Date((d+timezone+25200) * 1000).getHours()
+        let hours = new Date((d+timezone+localTimezoneOffset) * 1000).getHours()
         if (hours == 0){
             return '12 AM'
         } else if (hours > 12){

@@ -23,6 +23,8 @@ function App() {
   const [bg, setBg] = useState('');
   const [hourly, setHourly] = useState([]);
   const [weekly, setWeekly] = useState([]);
+  const localTimezoneOffset = new Date().getTimezoneOffset()*60;
+  // console.log('Timezone offset', localTimezoneOffset)
   
   // get user location if allowed
   useEffect(() => {
@@ -54,7 +56,7 @@ function App() {
         })
     })
     // get default background
-  fetch(`${unsplash_api.base}?page=1&query=san+francisco`, {
+  fetch(`${unsplash_api.base}?page=1&query=clouds`, {
     headers:{
       Authorization: unsplash_api.access_key
     }
@@ -115,7 +117,7 @@ function App() {
         <div>
           <div className='location-box'>
             <div className='location'>{weather.name}, {weather.sys.country}</div>
-            <div className='date'>{dateBuilder(new Date((weather.dt + weather.timezone + 25200) * 1000))}</div>
+            <div className='date'>{dateBuilder(new Date((weather.dt + weather.timezone + localTimezoneOffset) * 1000))}</div>
           </div>
           <div className='weather-box'>
             <div className='temp'>
@@ -135,9 +137,12 @@ function App() {
               </div>
             </div>
           </div>
-          <HourlyForecast hourly={hourly} timezone={weather.timezone} units={units} currentDt={weather.dt} />
-          <WeeklyForecast weekly={weekly} timezone={weather.timezone} />
+          <HourlyForecast hourly={hourly} timezone={weather.timezone} units={units} currentDt={weather.dt} localTimezoneOffset={localTimezoneOffset} />
+          {/* <WeeklyForecast weekly={weekly} timezone={weather.timezone} localTimezoneOffset={localTimezoneOffset}/> */}
           <MoreInfo weatherInfo={weather} units={units} uvi={uvi}/>
+          <div className='weather-info'>
+            {weather.weather[0]}
+          </div>
         </div>
         ) : ('')}
       </main>
