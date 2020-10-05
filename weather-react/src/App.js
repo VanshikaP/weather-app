@@ -133,18 +133,13 @@ function App() {
             <div className='weather'>
               <div className='desc'>
                 <span className='weather-desc'>{weather.weather[0].main}</span>
-                <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt='' />
+                <img className='weather-icon' src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt='' />
               </div>
             </div>
           </div>
           <HourlyForecast hourly={hourly} timezone={weather.timezone} units={units} currentDt={weather.dt} localTimezoneOffset={localTimezoneOffset} />
           {/* <WeeklyForecast weekly={weekly} timezone={weather.timezone} localTimezoneOffset={localTimezoneOffset}/> */}
           <MoreInfo weatherInfo={weather} units={units} uvi={uvi}/>
-          <div className='weather-info'>
-            {weather.weather[0].icon}<br />
-            http://openweathermap.org/img/wn/{weather.weather[0].icon}.png
-            <img style={{background:'red'}}src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt='Not showing' />
-          </div>
         </div>
         ) : ('')}
       </main>

@@ -21,7 +21,7 @@ const HourlyForecast = ({hourly, currentDt, timezone, units, localTimezoneOffset
                     {convertTime(h.dt)}
                     </div>
                     <div className='hourly-icon'>
-                    <img className='hourly-icon-img' src={`http://openweathermap.org/img/wn/${h.weather[0].icon}.png`} alt={h.weather[0].main}/>
+                    <img className='hourly-icon-img' src={`https://openweathermap.org/img/wn/${h.weather[0].icon}.png`} alt={h.weather[0].main}/>
                     </div>
                     <div className='hourly-temp'>
                         {Math.round(h.temp)} °
