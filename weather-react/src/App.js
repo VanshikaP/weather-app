@@ -141,9 +141,9 @@ function App() {
           {/* <WeeklyForecast weekly={weekly} timezone={weather.timezone} localTimezoneOffset={localTimezoneOffset}/> */}
           <MoreInfo weatherInfo={weather} units={units} uvi={uvi}/>
           <div className='weather-info'>
-            {weather.weather[0].icon}
+            {weather.weather[0].icon}<br />
             http://openweathermap.org/img/wn/{weather.weather[0].icon}.png
-            <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt='' />
+            <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt='' />
           </div>
         </div>
         ) : ('')}
